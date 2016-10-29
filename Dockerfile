@@ -23,7 +23,7 @@ RUN		apt-get update \
 			puppetserver \
 
 		# Reduce memory allocation to 512MB from 4GB default
-		&& sed -i '/JAVA_ARGS=/s/\(-Xm[sx]\)2g/\1512m/g' /etc/default/puppetserver
+		&& sed -i '/JAVA_ARGS=/s/\(-Xm[sx]\)2g/\1512m/g' /etc/default/puppetserver \
 
 		# Cleanup
 		&& rm -rf /var/lib/apt/lists/*
