@@ -6,7 +6,7 @@ VOLUME		["/etc/puppetlabs/code/"]
 
 EXPOSE		443 8140 8142 61613
 
-RUN		echo "acquire::http::proxy \"http://192.168.69.240:3142\";" > /etc/apt/apt.conf.d/02proxy
+#RUN		echo "acquire::http::proxy \"http://192.168.69.240:3142\";" > /etc/apt/apt.conf.d/02proxy
 
 RUN		apt-get update \
 		&& DEBIAN_FRONTEND=noninteractive apt-get install -y \
@@ -23,7 +23,7 @@ RUN		apt-get update \
 			puppetserver \
 
 		# Reduce memory allocation to 512MB from 4GB default
-		&& sed -e '/JAVA_ARGS=/s/\(-Xm[sx]\)2g/\1512m/g' /etc/default/puppetserver
+		&& sed -i '/JAVA_ARGS=/s/\(-Xm[sx]\)2g/\1512m/g' /etc/default/puppetserver
 
 		# Cleanup
 		&& rm -rf /var/lib/apt/lists/*
